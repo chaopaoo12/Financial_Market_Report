@@ -4,9 +4,9 @@ import pandas as pd
 import indicator_factory as indf
 import sys
 import Message as msg
+from datetime import datetime, date, timedelta
 from github import Github
 from github import InputGitAuthor, InputGitTreeElement
-
 
 settings = {
     "akshare": 
@@ -129,20 +129,20 @@ def YF_REPORT(start, end):
 
 
 if __name__ == '__main__':
-    start = sys.argv[1]
-    end = sys.argv[2]
-    smtpserver = sys.argv[3]
-    smtpport = sys.argv[4]
-    msg_from = sys.argv[5]
-    msg_to = sys.argv[6]
-    passwd = sys.argv[7]
-    token = sys.argv[8]
+    start = (date.today() - timedelta(days=150)).strftime("%Y-%m-%d")
+    end = date.today().strftime("%Y-%m-%d")
+    smtpserver = sys.argv[1]
+    smtpport = sys.argv[2]
+    msg_from = sys.argv[3]
+    msg_to = sys.argv[4]
+    passwd = sys.argv[5]
+    token = sys.argv[6]
 
     res1 = YF_REPORT(start, end)
     res2 = AK_REPORT()
     res = pd.concat([res1, res2])
     msg.send_email('test', msg.build_email(msg.build_head(), 
-                                           msg.build_table(res, 'test')),
+                                           msg.build_table(res, 'test')), 
                    end, smtpserver, smtpport, msg_from, msg_to, passwd)
     g = Github(token)
     file_path = 'path/to/your/file.txt'
