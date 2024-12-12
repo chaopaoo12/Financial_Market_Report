@@ -1,4 +1,4 @@
-name: Report Robot
+name: Finance Market Report Robot
 on:
   schedule:
     - cron: '0 1 * * *'
