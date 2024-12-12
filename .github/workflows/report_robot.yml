@@ -1,0 +1,31 @@
+name: Report Robot
+on:
+  schedule:
+    - cron: '0 0 * * *'
+    jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+      - uses: actions/checkout@v2
+
+      - name: Set up Python 
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip
+          pip3 install -r requirements.txt
+
+      - name: install python dependencies
+        run: |
+          pip3 install git+https://github.com/chaopaoo12/indicator_factory.git
+          pip3 install git+https://github.com/chaopaoo12/Message.git
+
+      - name: run report robot
+        run: |  
+          python3 market_report.py
