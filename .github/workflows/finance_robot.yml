@@ -29,9 +29,9 @@ jobs:
 
           echo ${{ secrets.SERVER_ADDRESS }}
           echo ${{ secrets.SERVER_PORT }}
-          echo ${{ secrets.FROM_EMAIL }}
-          echo ${{ secrets.TO_EMAIL }}
+          echo ${{ secrets.FROM_MAIL }}
+          echo ${{ secrets.TO_MAIL }}
           echo ${{ secrets.PWD_MAIL }}
           echo ${{ secrets.TOKEN }}
 
-          python3 market_report.py ${{secrets.SERVER_ADDRESS}} ${{secrets.SERVER_PORT}} ${{secrets.FROM_EMAIL}} ${{secrets.TO_EMAIL}} ${{secrets.PWD_MAIL}} ${{secrets.TOKEN}}
+          python3 market_report.py ${{secrets.SERVER_ADDRESS}} ${{secrets.SERVER_PORT}} ${{secrets.FROM_MAIL}} ${{secrets.TO_MAIL}} ${{secrets.PWD_MAIL}} ${{secrets.TOKEN}}
