@@ -28,4 +28,4 @@ on:
 
       - name: run report robot
         run: |  
-          python3 market_report.py
+          python3 Financial_Market_Report/market_report.py ${{ secrets.SERVER_ADDRESS }} ${{ secrets.SERVER_PORT }} ${{ secrets.FROM_EMAIL }} ${{ secrets.TO_EMAIL }} ${{ secrets.PWD_MAIL }} ${{ secrets.TOKEN }}
