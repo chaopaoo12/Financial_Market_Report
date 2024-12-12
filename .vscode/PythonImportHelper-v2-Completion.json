@@ -109,7 +109,7 @@
         "kind": 2,
         "importPath": "market_report",
         "description": "market_report",
-        "peekOfCode": "def YF_REPORT(start, end):\n    symbols_list = []\n    for key, values in settings.get('yfinance').items():\n        symbols_list.extend(values)\n    return YF_BOLL(symbols_list, start, end)\nif __name__ == '__main__':\n    start = (date.today() - timedelta(days=150)).strftime(\"%Y-%m-%d\")\n    end = date.today().strftime(\"%Y-%m-%d\")\n    smtpserver = sys.argv[1]\n    smtpport = sys.argv[2]",
+        "peekOfCode": "def YF_REPORT(start, end):\n    symbols_list = []\n    for key, values in settings.get('yfinance').items():\n        symbols_list.extend(values)\n    return YF_BOLL(symbols_list, start, end)\nif __name__ == '__main__':\n    start = (date.today() - timedelta(days=150)).strftime(\"%Y-%m-%d\")\n    end = date.today().strftime(\"%Y-%m-%d\")\n    print(sys.argv)\n    smtpserver = sys.argv[1]",
         "detail": "market_report",
         "documentation": {}
     },
