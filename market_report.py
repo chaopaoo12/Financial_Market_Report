@@ -5,8 +5,6 @@ import indicator_factory as indf
 import sys
 import Message as msg
 from datetime import datetime, date, timedelta
-from github import Github
-from github import InputGitAuthor, InputGitTreeElement
 
 settings = {
     "akshare": 
@@ -144,6 +142,3 @@ if __name__ == '__main__':
     msg.send_email('test', msg.build_email(msg.build_head(), 
                                            msg.build_table(res, 'test')), 
                    end, smtpserver, smtpport, msg_from, msg_to, passwd)
-    g = Github(token)
-    file_path = 'path/to/your/file.txt'
-    file_content = 'This is a new file content'

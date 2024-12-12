@@ -78,30 +78,6 @@
         "documentation": {}
     },
     {
-        "label": "Github",
-        "importPath": "github",
-        "description": "github",
-        "isExtraImport": true,
-        "detail": "github",
-        "documentation": {}
-    },
-    {
-        "label": "InputGitAuthor",
-        "importPath": "github",
-        "description": "github",
-        "isExtraImport": true,
-        "detail": "github",
-        "documentation": {}
-    },
-    {
-        "label": "InputGitTreeElement",
-        "importPath": "github",
-        "description": "github",
-        "isExtraImport": true,
-        "detail": "github",
-        "documentation": {}
-    },
-    {
         "label": "AK_BOLL",
         "kind": 2,
         "importPath": "market_report",
