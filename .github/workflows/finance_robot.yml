@@ -25,4 +25,4 @@ jobs:
           pip3 install git+https://github.com/chaopaoo12/Message.git
       - name: 'run report robot'
         run: |  
-          python3 market_report.py ${{ secrets.SERVER_ADDRESS }} ${{ secrets.SERVER_PORT }} ${{ secrets.FROM_EMAIL }} ${{ secrets.TO_EMAIL }} ${{ secrets.PWD_MAIL }} ${{ secrets.TOKEN }}
+          python3 market_report.py ${{secrets.SERVER_ADDRESS}} ${{secrets.SERVER_PORT}} ${{secrets.FROM_EMAIL}} ${{secrets.TO_EMAIL}} ${{secrets.PWD_MAIL}} ${{secrets.TOKEN}}
