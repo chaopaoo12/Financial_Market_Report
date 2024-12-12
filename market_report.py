@@ -141,5 +141,5 @@ if __name__ == '__main__':
     res2 = AK_REPORT()
     res = pd.concat([res1, res2])
     msg.send_email('test', msg.build_email(msg.build_head(), 
-                                           msg.build_table(res, 'test')), 
+                                           msg.build_table(res, 'Financial Market Report')), 
                    end, smtpserver, smtpport, msg_from, msg_to, passwd)
