@@ -1,7 +1,6 @@
 name: Finance Market Report Manual
 on:
   workflow_dispatch:
-
 jobs:
   run-python-script:
     runs-on: ubuntu-latest
