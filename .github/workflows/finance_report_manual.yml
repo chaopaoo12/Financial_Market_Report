@@ -1,4 +1,4 @@
-name: Finance Market Report Manual
+name: Manual Finance Market Report 
 on:
   workflow_dispatch:
 jobs:
