@@ -1,4 +1,4 @@
-name: Finance Market Report Robot
+name: Finance Market Report Manual
 on:
   workflow_dispatch:
 
