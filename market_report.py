@@ -118,6 +118,7 @@ def AK_REPORT():
             elif key == 'stock_zh_index_daily':
                 func = ak.stock_zh_index_daily
             for value in values:
+                print('akshare: ',value)
                 data = AK_BOLL(value, func)
                 data_list.append(data)
         except Exception:
@@ -128,6 +129,7 @@ def AK_REPORT():
 def YF_REPORT(start, end):
     symbols_list = []
     for key, values in settings.get('yfinance').items():
+        print('yfinance: ', values)
         symbols_list.extend(values)
     return YF_BOLL(symbols_list, start, end)
 
@@ -135,13 +137,13 @@ def YF_REPORT(start, end):
 if __name__ == '__main__':
     start = (date.today() - timedelta(days=150)).strftime("%Y-%m-%d")
     end = date.today().strftime("%Y-%m-%d")
-    print(sys.argv)
     smtpserver = sys.argv[1]
     smtpport = sys.argv[2]
     msg_from = sys.argv[3]
     msg_to = sys.argv[4]
     passwd = sys.argv[5]
     token = sys.argv[6]
+    print('start:'start, 'end': end)
 
     res1 = YF_REPORT(start, end)
     res2 = AK_REPORT()
