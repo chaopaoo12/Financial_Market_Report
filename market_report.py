@@ -143,7 +143,7 @@ if __name__ == '__main__':
     msg_to = sys.argv[4]
     passwd = sys.argv[5]
     token = sys.argv[6]
-    print('start:'start, 'end': end)
+    print('start: ', start, ' end: ', end)
 
     res1 = YF_REPORT(start, end)
     res2 = AK_REPORT()
