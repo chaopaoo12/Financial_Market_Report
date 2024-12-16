@@ -105,24 +105,24 @@ def YF_BOLL(symbol, start, end):
                             , WK_BOLL=res.close/res.WK_BOLL-1)
             res_list.append(res)
         except Exception:
-            pass
+            print('failed:' + i)
     return pd.concat(res_list)[['symbol','close','DAY_LB','DAY_BOLL','DAY_UB','WK_LB','WK_BOLL','WK_UB']]
 
 
 def AK_REPORT():
     data_list = []
     for key, values in settings.get('akshare').items():
-        try:
-            if key == 'futures_main_sina':
-                func = ak.futures_main_sina
-            elif key == 'stock_zh_index_daily':
-                func = ak.stock_zh_index_daily
-            for value in values:
-                print('akshare: ',value)
+        if key == 'futures_main_sina':
+            func = ak.futures_main_sina
+        elif key == 'stock_zh_index_daily':
+            func = ak.stock_zh_index_daily
+        for value in values:
+            try:
+                print('akshare: ', value)
                 data = AK_BOLL(value, func)
                 data_list.append(data)
-        except Exception:
-            pass
+            except Exception:
+                print('failed:' + key + ':' + value)
     return pd.concat(data_list)[['symbol','close','DAY_LB','DAY_BOLL','DAY_UB','WK_LB','WK_BOLL','WK_UB',]]
 
 
