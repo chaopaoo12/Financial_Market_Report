@@ -89,33 +89,39 @@ def YF_BOLL(symbol, start, end):
     data.columns = pd.MultiIndex.from_tuples([(a, b.lower()) for (a,b) in data.columns])
     res_list = []
     for i in symbol:
-        df = data.get(i).dropna()
-        day_data = df.tail(20)
-        day_data[['DAY_BOLL','DAY_UB','DAY_LB']] = indf.QA_indicator_BOLL(day_data)
-        week_data = df['close'].resample('W').ohlc().tail(20)
-        week_data[['WK_BOLL','WK_UB','WK_LB']] = indf.QA_indicator_BOLL(week_data)
-        res = pd.DataFrame(pd.concat([day_data.iloc[-1],week_data.iloc[-1][['WK_BOLL','WK_UB','WK_LB']]])).T
-        res = res.assign(symbol=settings.get('view_name')[i]
-                        , DAY_LB=res.close/res.DAY_LB-1
-                        , DAY_UB=res.close/res.DAY_UB-1
-                        , DAY_BOLL=res.close/res.DAY_BOLL-1
-                        , WK_LB=res.close/res.WK_LB-1
-                        , WK_UB=res.close/res.WK_UB-1
-                        , WK_BOLL=res.close/res.WK_BOLL-1)
-        res_list.append(res)
+        try:
+            df = data.get(i).dropna()
+            day_data = df.tail(20)
+            day_data[['DAY_BOLL','DAY_UB','DAY_LB']] = indf.QA_indicator_BOLL(day_data)
+            week_data = df['close'].resample('W').ohlc().tail(20)
+            week_data[['WK_BOLL','WK_UB','WK_LB']] = indf.QA_indicator_BOLL(week_data)
+            res = pd.DataFrame(pd.concat([day_data.iloc[-1],week_data.iloc[-1][['WK_BOLL','WK_UB','WK_LB']]])).T
+            res = res.assign(symbol=settings.get('view_name')[i]
+                            , DAY_LB=res.close/res.DAY_LB-1
+                            , DAY_UB=res.close/res.DAY_UB-1
+                            , DAY_BOLL=res.close/res.DAY_BOLL-1
+                            , WK_LB=res.close/res.WK_LB-1
+                            , WK_UB=res.close/res.WK_UB-1
+                            , WK_BOLL=res.close/res.WK_BOLL-1)
+            res_list.append(res)
+        except Exception:
+            pass
     return pd.concat(res_list)[['symbol','close','DAY_LB','DAY_BOLL','DAY_UB','WK_LB','WK_BOLL','WK_UB']]
 
 
 def AK_REPORT():
     data_list = []
     for key, values in settings.get('akshare').items():
-         if key == 'futures_main_sina':
-            func = ak.futures_main_sina
-         elif key == 'stock_zh_index_daily':
-            func = ak.stock_zh_index_daily
-         for value in values:
-            data = AK_BOLL(value, func)
-            data_list.append(data)
+        try:
+            if key == 'futures_main_sina':
+                func = ak.futures_main_sina
+            elif key == 'stock_zh_index_daily':
+                func = ak.stock_zh_index_daily
+            for value in values:
+                data = AK_BOLL(value, func)
+                data_list.append(data)
+        except Exception:
+            pass
     return pd.concat(data_list)[['symbol','close','DAY_LB','DAY_BOLL','DAY_UB','WK_LB','WK_BOLL','WK_UB',]]
 
 
