@@ -669,9 +669,11 @@ def Make_SINGLE(data):
     week_data = data['close'].resample('W').ohlc().tail(20)
     week_data[['WK_BOLL','WK_UB','WK_LB']] = indf.QA_indicator_BOLL(week_data)
     res = pd.DataFrame(pd.concat([day_data.iloc[-1],week_data.iloc[-1][['WK_BOLL','WK_UB','WK_LB']]])).T
-    res = res.assign(DAY_LB=res.close/res.DAY_LB-1
+    res = res.assign(DAY_RNG=res.DAY_UB/res.DAY_LB -1
+                     , DAY_LB=res.close/res.DAY_LB-1
                      , DAY_UB=res.close/res.DAY_UB-1
                      , DAY_BOLL=res.close/res.DAY_BOLL-1
+                     , WK_RNG=res.WK_UB/res.WK_LB -1
                      , WK_LB=res.close/res.WK_LB-1
                      , WK_UB=res.close/res.WK_UB-1
                      , WK_BOLL=res.close/res.WK_BOLL-1)
@@ -723,7 +725,7 @@ def YF_BOLL(symbol, start, end):
             res_list.append(res)
         except Exception:
             print('failed:' + i)
-    return pd.concat(res_list)[['symbol','close','DAY_LB','DAY_BOLL','DAY_UB','WK_LB','WK_BOLL','WK_UB']]
+    return pd.concat(res_list)[['symbol','close','DAY_RNG','DAY_LB','DAY_BOLL','DAY_UB','WK_RNG','WK_LB','WK_BOLL','WK_UB']]
 
 
 def AK_REPORT(start, end):
@@ -740,7 +742,7 @@ def AK_REPORT(start, end):
         for value in values:
             try:
                 print('akshare: ', value)
-                data = func(value, start, end)[['symbol','close','DAY_LB','DAY_BOLL','DAY_UB','WK_LB','WK_BOLL','WK_UB',]]
+                data = func(value, start, end)[['symbol','close','DAY_RNG','DAY_LB','DAY_BOLL','DAY_UB','WK_RNG','WK_LB','WK_BOLL','WK_UB',]]
                 data_list.append(data)
             except Exception:
                 print('failed:' + key + ':' + value)
