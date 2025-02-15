@@ -669,8 +669,12 @@ def Make_SINGLE(data):
     week_data = data['close'].resample('W').ohlc().tail(20)
     week_data[['WK_BOLL','WK_UB','WK_LB']] = indf.QA_indicator_BOLL(week_data)
     res = pd.DataFrame(pd.concat([day_data.iloc[-1],week_data.iloc[-1][['WK_BOLL','WK_UB','WK_LB']]])).T
+<<<<<<< HEAD
     res = res.assign(DAY_RNG=res.DAY_UB/res.DAY_LB -1
                      , DAY_LB=res.close/res.DAY_LB-1
+=======
+    res = res.assign(DAY_LB=res.close/res.DAY_LB-1
+>>>>>>> 44cb7d33f4fd6256490e241d6c7d1c34b111ec62
                      , DAY_UB=res.close/res.DAY_UB-1
                      , DAY_BOLL=res.close/res.DAY_BOLL-1
                      , WK_RNG=res.WK_UB/res.WK_LB -1
@@ -742,7 +746,11 @@ def AK_REPORT(start, end):
         for value in values:
             try:
                 print('akshare: ', value)
+<<<<<<< HEAD
                 data = func(value, start, end)[['symbol','close','DAY_RNG','DAY_LB','DAY_BOLL','DAY_UB','WK_RNG','WK_LB','WK_BOLL','WK_UB',]]
+=======
+                data = func(value, start, end)[['symbol','close','DAY_LB','DAY_BOLL','DAY_UB','WK_LB','WK_BOLL','WK_UB',]]
+>>>>>>> 44cb7d33f4fd6256490e241d6c7d1c34b111ec62
                 data_list.append(data)
             except Exception:
                 print('failed:' + key + ':' + value)
