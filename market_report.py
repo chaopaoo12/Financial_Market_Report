@@ -666,6 +666,7 @@ settings = {
 def Make_SINGLE(data):
     day_data = data.tail(20)
     day_data[['DAY_BOLL','DAY_UB','DAY_LB']] = indf.QA_indicator_BOLL(day_data)
+    day_data = day_data.assign(PCT_CHANGE=day_data.close.pct_change())
     week_data = data['close'].resample('W').ohlc().tail(20)
     week_data[['WK_BOLL','WK_UB','WK_LB']] = indf.QA_indicator_BOLL(week_data)
     res = pd.DataFrame(pd.concat([day_data.iloc[-1],week_data.iloc[-1][['WK_BOLL','WK_UB','WK_LB']]])).T
@@ -677,7 +678,7 @@ def Make_SINGLE(data):
                      , WK_LB=res.close/res.WK_LB-1
                      , WK_UB=res.close/res.WK_UB-1
                      , WK_BOLL=res.close/res.WK_BOLL-1
-                     , PCT_CHANGE=res.close.pct_change())
+                     )
     return (res)
 
 
