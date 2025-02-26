@@ -676,7 +676,8 @@ def Make_SINGLE(data):
                      , WK_RNG=res.WK_UB/res.WK_LB -1
                      , WK_LB=res.close/res.WK_LB-1
                      , WK_UB=res.close/res.WK_UB-1
-                     , WK_BOLL=res.close/res.WK_BOLL-1)
+                     , WK_BOLL=res.close/res.WK_BOLL-1
+                     , PCT_CHANGE=res.close.pct_change())
     return (res)
 
 
@@ -725,7 +726,7 @@ def YF_BOLL(symbol, start, end):
             res_list.append(res)
         except Exception:
             print('failed:' + i)
-    return pd.concat(res_list)[['symbol','close','DAY_RNG','DAY_LB','DAY_BOLL','DAY_UB','WK_RNG','WK_LB','WK_BOLL','WK_UB']]
+    return pd.concat(res_list)[['symbol','close','PCT_CHANGE','DAY_RNG','DAY_LB','DAY_BOLL','DAY_UB','WK_RNG','WK_LB','WK_BOLL','WK_UB']]
 
 
 def AK_REPORT(start, end):
@@ -742,7 +743,7 @@ def AK_REPORT(start, end):
         for value in values:
             try:
                 print('akshare: ', value)
-                data = func(value, start, end)[['symbol','close','DAY_RNG','DAY_LB','DAY_BOLL','DAY_UB','WK_RNG','WK_LB','WK_BOLL','WK_UB',]]
+                data = func(value, start, end)[['symbol','close','PCT_CHANGE','DAY_RNG','DAY_LB','DAY_BOLL','DAY_UB','WK_RNG','WK_LB','WK_BOLL','WK_UB',]]
                 data_list.append(data)
             except Exception:
                 print('failed:' + key + ':' + value)
