@@ -324,8 +324,14 @@ settings = {
         "view_name": {
             "数字货币":
                 {"BTC-USD": "比特币美元指数",
-                 "USDT-USD": "USDT-USD",
-                 "ETH-USD": "ETH-USD"},
+                 "USDT-USD": "USDT价格",
+                 "ETH-USD": "ETH价格",
+                 "BNB-USD": "BNB价格",
+                 "SOL-USD": "SOL价格",
+                 "XRP-USD": "XRP价格",
+                 "DOGE-USD": "DOGE价格",
+                 "TRX-USD": "TRX价格",
+                 "HTPE-USD": "HTPE价格"},
             "大宗商品":
                 {"GC=F": "纽约黄金",
                  "XAU=F": "伦敦黄金",
