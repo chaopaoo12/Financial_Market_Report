@@ -766,7 +766,7 @@ def YF_REPORT(start, end):
 
 
 if __name__ == '__main__':
-    start = (date.today() - timedelta(days=150)).strftime("%Y-%m-%d")
+    start = (date.today() - timedelta(days=200)).strftime("%Y-%m-%d")
     end = date.today().strftime("%Y-%m-%d")
     smtpserver = sys.argv[1]
     smtpport = sys.argv[2]
