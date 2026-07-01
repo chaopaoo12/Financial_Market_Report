@@ -664,10 +664,10 @@ settings = {
 
 
 def Make_SINGLE(data):
-    day_data = data.fillna(method='ffill').tail(20)
+    day_data = data.ffill().tail(20)
     day_data[['DAY_BOLL','DAY_UB','DAY_LB']] = indf.QA_indicator_BOLL(day_data)
     day_data = day_data.assign(PCT_CHANGE=day_data.close.pct_change())
-    week_data = data['close'].resample('W').ohlc().fillna(method='ffill').tail(20)
+    week_data = data['close'].resample('W').ohlc().ffill().tail(20)
     week_data[['WK_BOLL','WK_UB','WK_LB']] = indf.QA_indicator_BOLL(week_data)
     res = pd.DataFrame(pd.concat([day_data.iloc[-1],week_data.iloc[-1][['WK_BOLL','WK_UB','WK_LB']]])).T
     res = res.assign(DAY_RNG=res.DAY_UB/res.DAY_LB -1
