@@ -314,7 +314,7 @@ settings = {
         },
     "yfinance": 
         {
-            "BTC": ["BTC-USD","USDT-USD","ETH-USD"],
+            "BTC": ["BTC-USD","USDT-USD","ETH-USD","BNB-USD","SOL-USD","XRP-USD","DOGE-USD","TRX-USD","HTPE-USD"],
             "GOLD": ["GC=F","XAU=F","CL=F","NG=F"],
             "MONEY": ["DX=F","USDCNY=X","EURCNY=X","USDJPY=X","USDEUR=X","USDGBP=X","USDHKD=X","USDAUD=X","USDCAD=X"],
             "US_INDEX": ["^GSPC","^DJI","^IXIC","^SPX","^GDAXI","^N225","^FTSE","^HSI","^HSCE"],
